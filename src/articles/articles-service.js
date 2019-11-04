@@ -4,8 +4,8 @@ const ArticlesService = {
         return knexInstance.select('*').from('blogful_articles')
         // return 'perche non fungi??'
     },
-    insertArticle(knex, newArticle) {
-       return knex
+    insertArticle(knexInstance, newArticle) {
+       return knexInstance
             .insert(newArticle)
             .into('blogful_articles')
             .returning('*')
@@ -20,14 +20,14 @@ const ArticlesService = {
             .where('id', id)
             .first()
     },
-    deleteArticle(knex, id) {
-        return knex
-            .from('blogful_articles')
-            .where({ id })
-            .delete()
+    deleteArticle(knexInstance, id) {
+        return knexInstance
+          .from('blogful_articles')
+          .where({ id })
+          .delete()
     },
-    updateArticle(knex, id, newArticleFields) {
-        return knex
+    updateArticle(knexInstance, id, newArticleFields) {
+        return knexInstance
             .from('blogful_articles')
             .where({ id })
             .update(newArticleFields)
